@@ -22,7 +22,7 @@ export function calculateLevelAndProgress(xp: number): { level: number; title: s
   return { level, title, currentLevelXp, nextLevelXp, progressPercent };
 }
 
-export function formatCurrency(amount: number, currency = 'USD'): string {
+export function formatCurrency(amount: number, currency = 'MXN'): string {
   return new Intl.NumberFormat('es-MX', {
     style: 'currency',
     currency: currency,

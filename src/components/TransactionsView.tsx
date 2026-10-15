@@ -165,7 +165,7 @@ export const TransactionsView: React.FC<TransactionsViewProps> = ({
       <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-2">
         <div className="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-slate-800">
           <span>Mostrando {filteredTransactions.length} movimientos</span>
-          <span>Valores en USD</span>
+          <span>Valores en Pesos Mexicanos (MXN)</span>
         </div>
 
         {filteredTransactions.length === 0 ? (

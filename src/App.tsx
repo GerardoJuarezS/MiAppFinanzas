@@ -7,6 +7,7 @@ import { MonthlyReportsView } from './components/MonthlyReportsView.tsx';
 import { SimulatorView } from './components/SimulatorView.tsx';
 import { AddTransactionModal } from './components/AddTransactionModal.tsx';
 import { DepositGoalModal } from './components/DepositGoalModal.tsx';
+import { BudgetManagerModal } from './components/BudgetManagerModal.tsx';
 import {
   INITIAL_TRANSACTIONS,
   INITIAL_GOALS,
@@ -54,7 +55,10 @@ export default function App() {
     return saved ? JSON.parse(saved) : INITIAL_BADGES;
   });
 
-  const [budgets] = useState<CategoryBudget[]>(INITIAL_BUDGETS);
+  const [budgets, setBudgets] = useState<CategoryBudget[]>(() => {
+    const saved = localStorage.getItem('kakebo_budgets');
+    return saved ? JSON.parse(saved) : INITIAL_BUDGETS;
+  });
 
   const [userProfile, setUserProfile] = useState<UserProfile>(() => {
     const saved = localStorage.getItem('kakebo_user_profile');
@@ -63,6 +67,7 @@ export default function App() {
 
   // Modal states
   const [isAddTxOpen, setIsAddTxOpen] = useState(false);
+  const [isBudgetManagerOpen, setIsBudgetManagerOpen] = useState(false);
   const [depositGoalTarget, setDepositGoalTarget] = useState<SavingsGoal | null>(null);
 
   // Toast notification
@@ -86,6 +91,10 @@ export default function App() {
   }, [badges]);
 
   useEffect(() => {
+    localStorage.setItem('kakebo_budgets', JSON.stringify(budgets));
+  }, [budgets]);
+
+  useEffect(() => {
     localStorage.setItem('kakebo_user_profile', JSON.stringify(userProfile));
   }, [userProfile]);
 
@@ -94,6 +103,11 @@ export default function App() {
     setTimeout(() => {
       setToast(null);
     }, 4000);
+  };
+
+  const handleSaveBudgets = (updatedBudgets: CategoryBudget[]) => {
+    setBudgets(updatedBudgets);
+    showNotification('Presupuestos Guardados', 'Se actualizaron tus límites mensuales en pesos mexicanos (MXN)');
   };
 
   // Add XP and level update
@@ -252,8 +266,9 @@ export default function App() {
       setGoals(INITIAL_GOALS);
       setChallenges(INITIAL_CHALLENGES);
       setBadges(INITIAL_BADGES);
+      setBudgets(INITIAL_BUDGETS);
       setUserProfile(INITIAL_USER_PROFILE);
-      showNotification('Datos restablecidos con éxito', 'Se han restaurado los datos de demostración');
+      showNotification('Datos restablecidos con éxito', 'Se han restaurado los datos de demostración en MXN');
     }
   };
 
@@ -302,6 +317,7 @@ export default function App() {
             onOpenDepositGoal={(goal) => setDepositGoalTarget(goal)}
             onCheckInChallenge={handleCheckInChallenge}
             onOpenNewTransaction={() => setIsAddTxOpen(true)}
+            onOpenBudgetManager={() => setIsBudgetManagerOpen(true)}
           />
         )}
 
@@ -330,6 +346,8 @@ export default function App() {
             transactions={transactions}
             budgets={budgets}
             currentYearMonth="2026-10"
+            goals={goals}
+            userProfile={userProfile}
           />
         )}
 
@@ -371,6 +389,14 @@ export default function App() {
         goal={depositGoalTarget}
         onClose={() => setDepositGoalTarget(null)}
         onDeposit={handleDepositToGoal}
+      />
+
+      <BudgetManagerModal
+        isOpen={isBudgetManagerOpen}
+        onClose={() => setIsBudgetManagerOpen(false)}
+        budgets={budgets}
+        onSaveBudgets={handleSaveBudgets}
+        monthlyStats={currentStats}
       />
     </div>
   );

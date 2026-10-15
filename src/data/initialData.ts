@@ -12,22 +12,22 @@ export const INITIAL_USER_PROFILE: UserProfile = {
 };
 
 export const INITIAL_BUDGETS: CategoryBudget[] = [
-  { category: 'Alimentación', monthlyLimit: 450, icon: 'Utensils', color: '#38bdf8' },
-  { category: 'Vivienda', monthlyLimit: 800, icon: 'Home', color: '#818cf8' },
-  { category: 'Transporte', monthlyLimit: 140, icon: 'Car', color: '#fb923c' },
-  { category: 'Ocio & Salidas', monthlyLimit: 220, icon: 'PartyPopper', color: '#f472b6' },
-  { category: 'Salud & Bienestar', monthlyLimit: 100, icon: 'HeartPulse', color: '#34d399' },
-  { category: 'Educación & Crecimiento', monthlyLimit: 120, icon: 'GraduationCap', color: '#a78bfa' },
-  { category: 'Servicios & Suscripciones', monthlyLimit: 95, icon: 'Zap', color: '#facc15' },
-  { category: 'Compras & Ropa', monthlyLimit: 150, icon: 'ShoppingBag', color: '#fb7185' },
+  { category: 'Alimentación', monthlyLimit: 6500, icon: 'Utensils', color: '#38bdf8' },
+  { category: 'Vivienda', monthlyLimit: 12000, icon: 'Home', color: '#818cf8' },
+  { category: 'Transporte', monthlyLimit: 2400, icon: 'Car', color: '#fb923c' },
+  { category: 'Ocio & Salidas', monthlyLimit: 3500, icon: 'PartyPopper', color: '#f472b6' },
+  { category: 'Salud & Bienestar', monthlyLimit: 1600, icon: 'HeartPulse', color: '#34d399' },
+  { category: 'Educación & Crecimiento', monthlyLimit: 1800, icon: 'GraduationCap', color: '#a78bfa' },
+  { category: 'Servicios & Suscripciones', monthlyLimit: 1500, icon: 'Zap', color: '#facc15' },
+  { category: 'Compras & Ropa', monthlyLimit: 2500, icon: 'ShoppingBag', color: '#fb7185' },
 ];
 
 export const INITIAL_GOALS: SavingsGoal[] = [
   {
     id: 'goal-1',
     title: 'Fondo de Emergencia (3 Meses)',
-    targetAmount: 2500,
-    currentAmount: 1850,
+    targetAmount: 45000,
+    currentAmount: 32500,
     deadline: '2026-12-31',
     category: 'Seguridad',
     icon: 'ShieldCheck',
@@ -36,8 +36,8 @@ export const INITIAL_GOALS: SavingsGoal[] = [
   {
     id: 'goal-2',
     title: 'Viaje mochilero a Japón',
-    targetAmount: 2800,
-    currentAmount: 1650,
+    targetAmount: 55000,
+    currentAmount: 33000,
     deadline: '2027-04-15',
     category: 'Experiencias',
     icon: 'Plane',
@@ -46,8 +46,8 @@ export const INITIAL_GOALS: SavingsGoal[] = [
   {
     id: 'goal-3',
     title: 'Nueva MacBook / Estación de Trabajo',
-    targetAmount: 1600,
-    currentAmount: 1250,
+    targetAmount: 32000,
+    currentAmount: 24500,
     deadline: '2026-11-20',
     category: 'Tecnología',
     icon: 'Laptop',
@@ -56,8 +56,8 @@ export const INITIAL_GOALS: SavingsGoal[] = [
   {
     id: 'goal-4',
     title: 'Portafolio ETFs / S&P 500',
-    targetAmount: 4000,
-    currentAmount: 3200,
+    targetAmount: 70000,
+    currentAmount: 54000,
     deadline: '2027-01-01',
     category: 'Inversión',
     icon: 'TrendingUp',
@@ -69,14 +69,14 @@ export const INITIAL_CHALLENGES: Challenge[] = [
   {
     id: 'chal-1',
     title: 'Semana Cero Delivery & Café Callejero',
-    description: 'Prepara tus comidas y café en casa durante 7 días continuos para ahorrar ~$60.',
+    description: 'Prepara tus comidas y café en casa durante 7 días continuos para ahorrar ~$1,200 MXN.',
     rewardXp: 180,
     targetDays: 7,
     currentDays: 5,
     completed: false,
     category: 'Alimentación',
     difficulty: 'Fácil',
-    savingsTarget: 60,
+    savingsTarget: 1200,
   },
   {
     id: 'chal-2',
@@ -88,7 +88,7 @@ export const INITIAL_CHALLENGES: Challenge[] = [
     completed: false,
     category: 'Compras',
     difficulty: 'Medio',
-    savingsTarget: 100,
+    savingsTarget: 1800,
   },
   {
     id: 'chal-3',
@@ -100,19 +100,19 @@ export const INITIAL_CHALLENGES: Challenge[] = [
     completed: false,
     category: 'Ahorro Radical',
     difficulty: 'Retador',
-    savingsTarget: 80,
+    savingsTarget: 1500,
   },
   {
     id: 'chal-4',
     title: 'Microahorro Diario Automático',
-    description: 'Separa al menos $5 al día en tu alcancía digital durante 10 días.',
+    description: 'Separa al menos $100 MXN al día en tu alcancía digital durante 10 días.',
     rewardXp: 150,
     targetDays: 10,
     currentDays: 10,
     completed: true,
     category: 'Hábito',
     difficulty: 'Fácil',
-    savingsTarget: 50,
+    savingsTarget: 1000,
   },
 ];
 
@@ -165,10 +165,10 @@ export const INITIAL_BADGES: Badge[] = [
   {
     id: 'badge-super-saver',
     title: 'Mente 50/30/20 de Oro',
-    description: 'Ahorraste más de $500 en un solo ciclo mensual.',
+    description: 'Ahorraste más de $8,000 MXN en un solo ciclo mensual.',
     icon: 'ShieldCheck',
     unlockedAt: '2026-10-10T16:00:00.000Z',
-    requirement: 'Ahorrar más de $500',
+    requirement: 'Ahorrar más de $8,000 MXN',
     category: 'budget',
   },
   {
@@ -192,13 +192,13 @@ export const INITIAL_BADGES: Badge[] = [
 ];
 
 export const INITIAL_TRANSACTIONS: Transaction[] = [
-  // October 2026 (Current Month)
+  // October 2026 (Current Month - MXN)
   {
     id: 'tx-10-01',
     type: 'income',
-    amount: 2800,
+    amount: 24000,
     category: 'Sueldo',
-    description: 'Nómina Quincenal Octubre',
+    description: 'Nómina 1ra Quincena Octubre',
     date: '2026-10-01',
     classification: 'need',
     paymentMethod: 'Transferencia',
@@ -206,9 +206,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-02',
     type: 'expense',
-    amount: 750,
+    amount: 11500,
     category: 'Vivienda',
-    description: 'Renta de Apartamento',
+    description: 'Renta Departamento CDMX',
     date: '2026-10-02',
     classification: 'need',
     paymentMethod: 'Transferencia',
@@ -216,9 +216,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-03',
     type: 'expense',
-    amount: 72,
+    amount: 1350,
     category: 'Servicios & Suscripciones',
-    description: 'Internet Fibra Óptica + Spotify + Cloud',
+    description: 'Internet Fibra + CFE + Spotify + Cloud',
     date: '2026-10-03',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -226,9 +226,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-04',
     type: 'saving',
-    amount: 250,
+    amount: 4500,
     category: 'Ahorro para Metas',
-    description: 'Depósito a Fondo de Emergencia',
+    description: 'Aporte al Fondo de Emergencia',
     date: '2026-10-04',
     classification: 'saving',
     paymentMethod: 'Transferencia',
@@ -237,9 +237,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-05',
     type: 'expense',
-    amount: 145,
+    amount: 2450,
     category: 'Alimentación',
-    description: 'Supermercado semanal saludable',
+    description: 'Supermercado semana 1 (despensa saludable)',
     date: '2026-10-05',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -247,9 +247,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-06',
     type: 'expense',
-    amount: 45,
+    amount: 750,
     category: 'Transporte',
-    description: 'Gasolina y peaje',
+    description: 'Gasolina y tag de autopista',
     date: '2026-10-06',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -257,9 +257,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-07',
     type: 'expense',
-    amount: 58,
+    amount: 980,
     category: 'Ocio & Salidas',
-    description: 'Cine IMAX + Cena tacos gourmet',
+    description: 'Cine VIP + Cena con amigos',
     date: '2026-10-07',
     classification: 'want',
     paymentMethod: 'Tarjeta',
@@ -267,9 +267,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-08',
     type: 'saving',
-    amount: 150,
+    amount: 3000,
     category: 'Ahorro para Metas',
-    description: 'Aporte para Viaje a Japón',
+    description: 'Aporte a Meta: Viaje a Japón',
     date: '2026-10-08',
     classification: 'saving',
     paymentMethod: 'Transferencia',
@@ -278,9 +278,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-09',
     type: 'expense',
-    amount: 32,
+    amount: 650,
     category: 'Salud & Bienestar',
-    description: 'Membresía Gimnasio mensual',
+    description: 'Membresía gimnasio y suplementos',
     date: '2026-10-09',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -288,9 +288,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-10',
     type: 'income',
-    amount: 350,
+    amount: 6500,
     category: 'Ingresos Extra',
-    description: 'Proyecto Freelance UI Design',
+    description: 'Proyecto Freelance UI/UX',
     date: '2026-10-10',
     classification: 'need',
     paymentMethod: 'Transferencia',
@@ -298,7 +298,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-11',
     type: 'expense',
-    amount: 120,
+    amount: 2100,
     category: 'Alimentación',
     description: 'Supermercado semana 2',
     date: '2026-10-11',
@@ -308,9 +308,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-12',
     type: 'expense',
-    amount: 49,
+    amount: 850,
     category: 'Educación & Crecimiento',
-    description: 'Curso intensivo de Finanzas e Inversión',
+    description: 'Libro finanzas y curso online',
     date: '2026-10-12',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -318,9 +318,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-13',
     type: 'expense',
-    amount: 85,
+    amount: 1200,
     category: 'Ocio & Salidas',
-    description: 'Salida de fin de semana con amigos',
+    description: 'Salida fin de semana & brunch',
     date: '2026-10-13',
     classification: 'want',
     paymentMethod: 'Tarjeta',
@@ -328,9 +328,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-14',
     type: 'saving',
-    amount: 100,
+    amount: 2500,
     category: 'Inversiones',
-    description: 'Aporte a Portafolio ETFs S&P 500',
+    description: 'Aporte ETFs en casa de bolsa mexicana',
     date: '2026-10-14',
     classification: 'saving',
     paymentMethod: 'Transferencia',
@@ -339,19 +339,19 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-10-15',
     type: 'expense',
-    amount: 38,
+    amount: 450,
     category: 'Transporte',
-    description: 'Recarga tarjeta metro y viajes urbanos',
+    description: 'Recarga tarjeta metrobus y viajes app',
     date: '2026-10-15',
     classification: 'need',
     paymentMethod: 'Débito',
   },
 
-  // September 2026 (Previous Month for MOM Comparison)
+  // September 2026 (MOM Reference - MXN)
   {
     id: 'tx-09-01',
     type: 'income',
-    amount: 2800,
+    amount: 30000,
     category: 'Sueldo',
     description: 'Nómina Septiembre',
     date: '2026-09-01',
@@ -361,9 +361,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-09-02',
     type: 'expense',
-    amount: 750,
+    amount: 11500,
     category: 'Vivienda',
-    description: 'Renta de Apartamento',
+    description: 'Renta Septiembre',
     date: '2026-09-02',
     classification: 'need',
     paymentMethod: 'Transferencia',
@@ -371,9 +371,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-09-05',
     type: 'expense',
-    amount: 390,
+    amount: 6200,
     category: 'Alimentación',
-    description: 'Supermercados del mes',
+    description: 'Despensa completa del mes',
     date: '2026-09-05',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -381,9 +381,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-09-08',
     type: 'expense',
-    amount: 240,
+    amount: 3800,
     category: 'Ocio & Salidas',
-    description: 'Fiestas, restaurantes y eventos',
+    description: 'Restaurantes, café y conciertos',
     date: '2026-09-08',
     classification: 'want',
     paymentMethod: 'Tarjeta',
@@ -391,9 +391,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-09-12',
     type: 'expense',
-    amount: 110,
+    amount: 1800,
     category: 'Transporte',
-    description: 'Transporte urbano y viajes',
+    description: 'Combustible y movilidad',
     date: '2026-09-12',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -401,9 +401,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-09-15',
     type: 'expense',
-    amount: 140,
+    amount: 2200,
     category: 'Compras & Ropa',
-    description: 'Zapatos deportivos en oferta',
+    description: 'Ropa de oficina en descuento',
     date: '2026-09-15',
     classification: 'want',
     paymentMethod: 'Tarjeta',
@@ -411,9 +411,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-09-18',
     type: 'saving',
-    amount: 400,
+    amount: 7000,
     category: 'Ahorro para Metas',
-    description: 'Aporte programado a Fondo y Metas',
+    description: 'Aporte de ahorro programado',
     date: '2026-09-18',
     classification: 'saving',
     paymentMethod: 'Transferencia',
@@ -421,7 +421,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-09-25',
     type: 'expense',
-    amount: 80,
+    amount: 1400,
     category: 'Servicios & Suscripciones',
     description: 'Servicios del hogar',
     date: '2026-09-25',
@@ -429,11 +429,11 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
     paymentMethod: 'Transferencia',
   },
 
-  // August 2026 (Historic reference)
+  // August 2026 (Historic - MXN)
   {
     id: 'tx-08-01',
     type: 'income',
-    amount: 2800,
+    amount: 30000,
     category: 'Sueldo',
     description: 'Nómina Agosto',
     date: '2026-08-01',
@@ -443,7 +443,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-08-05',
     type: 'expense',
-    amount: 750,
+    amount: 11500,
     category: 'Vivienda',
     description: 'Renta Agosto',
     date: '2026-08-05',
@@ -453,9 +453,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-08-10',
     type: 'expense',
-    amount: 410,
+    amount: 5900,
     category: 'Alimentación',
-    description: 'Supermercado y comida',
+    description: 'Despensa Agosto',
     date: '2026-08-10',
     classification: 'need',
     paymentMethod: 'Tarjeta',
@@ -463,9 +463,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-08-15',
     type: 'saving',
-    amount: 350,
+    amount: 6000,
     category: 'Ahorro para Metas',
-    description: 'Aporte a alcancía',
+    description: 'Aporte a alcancías',
     date: '2026-08-15',
     classification: 'saving',
     paymentMethod: 'Transferencia',
@@ -473,9 +473,9 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: 'tx-08-20',
     type: 'expense',
-    amount: 210,
+    amount: 3200,
     category: 'Ocio & Salidas',
-    description: 'Cine y café',
+    description: 'Salidas y comidas fuera',
     date: '2026-08-20',
     classification: 'want',
     paymentMethod: 'Tarjeta',

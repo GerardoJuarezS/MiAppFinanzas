@@ -152,13 +152,13 @@ export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
           {/* Amount & Date */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-medium text-slate-300 block mb-1">Monto ($ USD)</label>
+              <label className="text-xs font-medium text-slate-300 block mb-1">Monto ($ MXN)</label>
               <input
                 type="number"
                 step="any"
                 min="0.01"
                 required
-                placeholder="45.00"
+                placeholder="450.00"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 className="w-full px-3 py-2 text-sm bg-slate-950 border border-slate-800 rounded-lg text-white font-mono-numbers focus:outline-none focus:ring-1 focus:ring-emerald-500"

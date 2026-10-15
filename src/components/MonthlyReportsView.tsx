@@ -13,23 +13,32 @@ import {
   ArrowDownRight,
   FileSpreadsheet,
   PieChart,
+  FileText,
+  Check,
 } from 'lucide-react';
-import type { Transaction, CategoryBudget, MonthlyStats } from '../types/finance.ts';
+import type { Transaction, CategoryBudget, MonthlyStats, SavingsGoal, UserProfile } from '../types/finance.ts';
 import { calculateMonthlyStats, formatCurrency, getMonthName } from '../utils/finance.ts';
+import { generateMonthlyReportPDF } from '../utils/pdfExport.ts';
 
 interface MonthlyReportsViewProps {
   transactions: Transaction[];
   budgets: CategoryBudget[];
   currentYearMonth: string;
+  goals?: SavingsGoal[];
+  userProfile?: UserProfile;
 }
 
 export const MonthlyReportsView: React.FC<MonthlyReportsViewProps> = ({
   transactions,
   budgets,
   currentYearMonth,
+  goals = [],
+  userProfile,
 }) => {
   const [selectedMonth, setSelectedMonth] = useState<string>(currentYearMonth);
   const [activeCategoryIndex, setActiveCategoryIndex] = useState<number | null>(null);
+  const [isPdfGenerating, setIsPdfGenerating] = useState(false);
+  const [pdfSuccess, setPdfSuccess] = useState(false);
 
   // Available months extracted from transactions
   const availableMonths = Array.from(
@@ -86,6 +95,27 @@ export const MonthlyReportsView: React.FC<MonthlyReportsViewProps> = ({
     document.body.removeChild(link);
   };
 
+  // Export PDF summary
+  const handleExportPDF = () => {
+    setIsPdfGenerating(true);
+    try {
+      generateMonthlyReportPDF({
+        stats: currentStats,
+        selectedMonth,
+        transactions,
+        goals,
+        budgets,
+        userProfile,
+      });
+      setPdfSuccess(true);
+      setTimeout(() => setPdfSuccess(false), 3000);
+    } catch (err) {
+      console.error('Error generating PDF report:', err);
+    } finally {
+      setIsPdfGenerating(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Top Header with Month Selector & Export */}
@@ -104,7 +134,7 @@ export const MonthlyReportsView: React.FC<MonthlyReportsViewProps> = ({
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
           {/* Month selector dropdown */}
           <div className="relative">
             <label htmlFor="month-select" className="sr-only">Seleccionar Mes</label>
@@ -112,7 +142,7 @@ export const MonthlyReportsView: React.FC<MonthlyReportsViewProps> = ({
               id="month-select"
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="px-3.5 py-2 text-xs font-semibold bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-200 rounded-lg cursor-pointer transition-colors focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+              className="px-3 py-2 text-xs font-semibold bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-200 rounded-lg cursor-pointer transition-colors focus:ring-1 focus:ring-emerald-500 focus:outline-none"
             >
               {availableMonths.map((m) => (
                 <option key={m} value={m}>
@@ -122,13 +152,39 @@ export const MonthlyReportsView: React.FC<MonthlyReportsViewProps> = ({
             </select>
           </div>
 
-          {/* Export button */}
+          {/* Export CSV button */}
           <button
             onClick={handleExportCSV}
-            className="px-3.5 py-2 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5"
+            className="px-3 py-2 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg transition-colors cursor-pointer flex items-center gap-1.5"
+            title="Exportar datos a formato CSV"
           >
-            <Download className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Descargar CSV</span>
+            <Download className="w-3.5 h-3.5 text-slate-400" />
+            <span>CSV</span>
+          </button>
+
+          {/* Export PDF button */}
+          <button
+            onClick={handleExportPDF}
+            disabled={isPdfGenerating}
+            className="px-3.5 py-2 text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-lg shadow-sm hover:shadow-emerald-500/20 transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap disabled:opacity-50"
+            title="Generar y descargar informe completo en PDF"
+          >
+            {pdfSuccess ? (
+              <>
+                <Check className="w-4 h-4 text-slate-950" />
+                <span>¡PDF Descargado!</span>
+              </>
+            ) : isPdfGenerating ? (
+              <>
+                <span className="w-3.5 h-3.5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                <span>Generando...</span>
+              </>
+            ) : (
+              <>
+                <FileText className="w-4 h-4" />
+                <span>Descargar PDF</span>
+              </>
+            )}
           </button>
         </div>
       </div>

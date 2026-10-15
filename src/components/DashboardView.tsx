@@ -12,6 +12,7 @@ import {
   Plus,
   Target,
   Sparkles,
+  Sliders,
 } from 'lucide-react';
 import type {
   Transaction,
@@ -34,6 +35,7 @@ interface DashboardViewProps {
   onOpenDepositGoal: (goal: SavingsGoal) => void;
   onCheckInChallenge: (challengeId: string) => void;
   onOpenNewTransaction: () => void;
+  onOpenBudgetManager: () => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({
@@ -47,6 +49,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   onOpenDepositGoal,
   onCheckInChallenge,
   onOpenNewTransaction,
+  onOpenBudgetManager,
 }) => {
   const activeChallenges = challenges.filter((c) => !c.completed);
   const recentTransactions = transactions.slice(0, 5);
@@ -406,7 +409,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         <div className="lg:col-span-1 p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold text-white">Presupuestos por Categoría</h2>
-            <span className="text-xs text-slate-400 font-mono-numbers">{budgets.length} reglas</span>
+            <button
+              onClick={onOpenBudgetManager}
+              className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1 cursor-pointer transition-colors"
+              title="Definir y editar presupuestos mensuales en MXN"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span>Editar</span>
+            </button>
           </div>
 
           <div className="space-y-3">
@@ -437,12 +447,21 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             ))}
           </div>
 
-          <button
-            onClick={() => onNavigateTab('reports')}
-            className="w-full py-2 text-xs font-semibold text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer text-center block"
-          >
-            Ver desglose completo de categorías
-          </button>
+          <div className="space-y-2 pt-1">
+            <button
+              onClick={onOpenBudgetManager}
+              className="w-full py-2 text-xs font-bold text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-lg transition-colors cursor-pointer text-center flex items-center justify-center gap-1.5"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span>Gestionar Presupuestos (MXN)</span>
+            </button>
+            <button
+              onClick={() => onNavigateTab('reports')}
+              className="w-full py-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors cursor-pointer text-center block"
+            >
+              Ver reporte gráfico detallado
+            </button>
+          </div>
         </div>
 
         {/* Movimientos Recientes (2 cols) */}

@@ -61,10 +61,10 @@ export const DepositGoalModal: React.FC<DepositGoalModalProps> = ({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-xs font-medium text-slate-300 block mb-1">Monto a Abonar ($)</label>
+            <label className="text-xs font-medium text-slate-300 block mb-1">Monto a Abonar ($ MXN)</label>
             <input
               type="number"
-              min="1"
+              min="10"
               step="any"
               required
               value={amount}
@@ -75,7 +75,7 @@ export const DepositGoalModal: React.FC<DepositGoalModalProps> = ({
 
           {/* Quick presets */}
           <div className="grid grid-cols-4 gap-1.5">
-            {['10', '25', '50', '100'].map((preset) => (
+            {['200', '500', '1000', '2500'].map((preset) => (
               <button
                 type="button"
                 key={preset}

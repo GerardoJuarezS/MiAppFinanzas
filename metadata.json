@@ -2,5 +2,7 @@
   "name": "Kakebo - Finanzas & Ahorro Gamificado",
   "description": "App intuitiva de finanzas personales, retos de ahorro y reportes mensuales visuales para jóvenes y adultos.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
